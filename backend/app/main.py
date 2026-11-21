@@ -2,8 +2,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from app.database import engine, Base
-from app.routers import users, projects, collaborations
-from backend.app.routers import deadline
+from app.routers import users, projects, collaborations, deadline, auth
 
 Base.metadata.create_all(bind=engine)
 
@@ -20,7 +19,8 @@ app.add_middleware(
 app.include_router(users.router)
 app.include_router(projects.router)
 app.include_router(collaborations.router)
-app.include_router(deadline.router.router)
+app.include_router(deadline.router)
+app.include_router(auth.router)
 
 @app.get("/health", tags=["System"])
 def health_check():

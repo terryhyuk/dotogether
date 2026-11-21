@@ -12,6 +12,10 @@ class UserLogin(BaseModel):
     email: str
     password: str
 
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
 class UserOut(BaseModel):
     id: int
     email: str
@@ -23,12 +27,17 @@ class UserOut(BaseModel):
 
 # --- Project ---
 class ProjectCreate(BaseModel):
-    leader_id: int
     title: str
     description: str | None = None
     start_date: date | None = None
     due_date: date | None = None
 
+class ProjectUpdate(BaseModel):
+    title: str | None = None
+    description: str | None = None
+    start_date: date | None = None
+    due_date: date | None = None
+    
 class ProjectOut(BaseModel):
     id: int
     leader_id: int
